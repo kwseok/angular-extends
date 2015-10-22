@@ -34,7 +34,7 @@ module.exports = {
             window: __dirname + '/src/vars/window',
             document: __dirname + '/src/vars/document',
             $: __dirname + '/src/vars/jquery',
-            jQuery: __dirname + '/src/vars/jquery'
+            jQuery: __dirname + '/src/vars/jquery',
             angular: __dirname + '/src/vars/angular'
         })
     ]
