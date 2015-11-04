@@ -24,7 +24,8 @@
   "homepage": "https://github.com/stonexx/angular-extends#readme",
   "dependencies": {
     "jquery": "^2.1.4",
-    "angular": "^1.4.7"
+    "angular": "^1.4.7",
+    "ng-tags-input": "^3.0.0"
   },
   "devDependencies": {
     "babel-core": "^5.8.25",
