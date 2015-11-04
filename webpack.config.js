@@ -15,8 +15,12 @@ module.exports = {
                 test: /.js$/,
                 exclude: /(node_modules|bower_components)/,
                 loader: 'babel-loader?optional=runtime'
+            },
+            {
+                test: /\.coffee$/,
+                exclude: /(node_modules|bower_components)/,
+                loader: 'coffee-loader'
             }
-            //{test: /\.coffee$/, loader: 'coffee-loader'}
         ]
     },
     externals: {
