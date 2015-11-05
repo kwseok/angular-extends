@@ -14,7 +14,7 @@ angular.module 'ngExtends.filters.arrays', []
 
 .filter 'join', [-> (input, sep) -> $.makeArray(input).join(sep)]
 
-.filter 'combine', [-> (input, transformers...) ->
+.filter 'combine', ['$parse', ($parse) -> (input, transformers...) ->
   input = [input]  unless angular.isArray input
   (for value in input
     for t in transformers
@@ -24,7 +24,7 @@ angular.module 'ngExtends.filters.arrays', []
         value = switch t
           when '=integer' then parseInt(value)
           when '=float'   then parseFloat(value)
-          else $.obj.get(value, t)
+          else $parse(t)(value)
     value
   ).reduce (t, v) -> t + v
 ]

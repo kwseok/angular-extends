@@ -2,9 +2,9 @@
 
 angular.module 'ngExtends.directives.domInit', []
 
-.directive 'extDomInit', [->
+.directive 'exDomInit', [->
   restrict: 'A',
   link: (scope, element, attrs) ->
-    attrs.$observe 'extDomInit', (value) -> scope.$eval(value)?(element)
-    undefined
+    attrs.$observe 'exDomInit', (value) -> scope.$eval(value)?(element)
+    return
 ]

@@ -7,5 +7,5 @@ angular.module 'ngExtends.services.locationState', []
   ($rootScope, $window, $location) ->
     $rootScope.$on '$locationChangeSuccess', -> $location.$$actualPath = $location.path()
     $rootScope.$watch (-> $location.path()), (newLocation) -> $location.isHistoryChanged = $location.$$actualPath is newLocation
-    undefined
+    return
 ]

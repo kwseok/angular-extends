@@ -2,10 +2,10 @@
 
 angular.module 'ngExtends.directives.repeatDone', []
 
-.directive 'extRepeatDone', [->
+.directive 'exRepeatDone', [->
   restrict: 'A',
   link: (scope, element, attrs) ->
     if (attrs.ngRepeat? or attrs.ngRepeatStart?) and scope.$last
-      attrs.$observe 'extRepeatDone', (value) -> scope.$eval(value)?(element)
-    undefined
+      attrs.$observe 'exRepeatDone', (value) -> scope.$eval(value)?(element)
+    return
 ]

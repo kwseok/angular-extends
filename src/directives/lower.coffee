@@ -2,7 +2,7 @@
 
 angular.module 'ngExtends.directives.lower', []
 
-.directive 'extLower', [->
+.directive 'exLower', [->
   require: 'ngModel'
   link: (scope, element, attrs, modelCtrl) ->
     toLower = (inputValue) ->
@@ -14,5 +14,5 @@ angular.module 'ngExtends.directives.lower', []
 
     modelCtrl.$parsers.push toLower
     toLower scope[attrs.ngModel]
-    undefined
+    return
 ]

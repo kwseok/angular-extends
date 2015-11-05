@@ -2,7 +2,7 @@
 
 angular.module 'ngExtends.directives.upper', []
 
-.directive 'extUpper', [->
+.directive 'exUpper', [->
   require: 'ngModel'
   link: (scope, element, attrs, modelCtrl) ->
     toUpper = (inputValue) ->
@@ -14,5 +14,5 @@ angular.module 'ngExtends.directives.upper', []
 
     modelCtrl.$parsers.push toUpper
     toUpper scope[attrs.ngModel]
-    undefined
+    return
 ]

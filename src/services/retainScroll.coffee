@@ -13,7 +13,7 @@ angular.module 'ngExtends.services.retainScroll', ['ngExtends.services.locationS
   @whetherScrollEvaluator = ['$location', ($location) -> $location.isHistoryChanged]
   @isDelayedEvaluator = [-> false]
   @$get = [-> @]
-  undefined
+  return
 ]
 
 .run [
@@ -22,8 +22,8 @@ angular.module 'ngExtends.services.retainScroll', ['ngExtends.services.locationS
     $target = $(retainScroll.target or window)
     $target.on 'scroll', -> retainScroll.positions[$location.url()] = $target.scrollTop()  if retainScroll.tracking
 
-    $rootScope.$on '$routeChangeSuccess', -> retainScroll.inactive = retainScroll.tracking = false
-    $rootScope.$on '$stateChangeSuccess', -> retainScroll.inactive = retainScroll.tracking = false
+    for event in ['$routeChangeSuccess', '$stateChangeSuccess']
+      $rootScope.$on event, -> retainScroll.inactive = retainScroll.tracking = false
     $rootScope.$on '$viewContentLoaded', (e) ->
       if retainScroll.inactive or not $injector.invoke(retainScroll.whetherScrollEvaluator)
         console.log "move to scroll top %o", $target[0]
@@ -57,10 +57,10 @@ angular.module 'ngExtends.services.retainScroll', ['ngExtends.services.locationS
                 else
                   onScrollCanceler()
                   $timeout(tryScroll, 100)
-              undefined
+              return
             )()
-          undefined
+          return
         , 100)
-      undefined
-    undefined
+      return
+    return
 ]

@@ -2,7 +2,7 @@
 
 angular.module 'ngExtends.directives.countTo', []
 
-.directive 'extCountTo', ['$timeout', ($timeout) ->
+.directive 'exCountTo', ['$timeout', ($timeout) ->
   replace: false
   scope: true
   link: (scope, element, attrs) ->
@@ -18,13 +18,14 @@ angular.module 'ngExtends.directives.countTo', []
       refreshInterval = 30
       step = 0
       scope.timoutId = null
-      countTo = parseInt(attrs.extCountTo) || 0
+      countTo = parseInt(attrs.exCountTo) || 0
       scope.value = parseInt(attrs.value, 10) || 0
       duration = (parseFloat(attrs.duration) * 1000) || 0
 
       steps = Math.ceil(duration / refreshInterval)
       increment = (countTo - scope.value) / steps
       num = scope.value
+      return
 
     tick = ->
       scope.timoutId = $timeout(->
@@ -38,14 +39,15 @@ angular.module 'ngExtends.directives.countTo', []
           elem.textContent = Math.round(num)
           tick()
       , refreshInterval)
+      return
 
     start = ->
       $timeout.cancel(scope.timoutId)  if scope.timoutId?
       calculate()
       tick()
+      return
 
-    attrs.$observe 'extCountTo', (val) -> start()  if val?
+    attrs.$observe 'exCountTo', (val) -> start()  if val?
     attrs.$observe 'value', -> start()
-
-    undefined
+    return
 ]

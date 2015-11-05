@@ -6,11 +6,11 @@ class SearchForm
       action: @options  if angular.isFunction @options
     @options = angular.extend(
       defaults: {}
-      #preSubmit: (form, filters, unfilters) ->
-      #preReset: (form) ->
-      #submit: (form, filters, unfilters) ->
-      #reset: (form) ->
-      #action: (form) ->
+      preSubmit: (form, filters, unfilters) ->
+      preReset: (form) ->
+      submit: (form, filters, unfilters) ->
+      reset: (form) ->
+      action: (form) ->
       #transform: (key, value) -> value
     , @options)
 

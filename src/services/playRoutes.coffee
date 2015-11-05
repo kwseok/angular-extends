@@ -25,9 +25,9 @@ angular.module 'ngExtends.services.playRoutes', []
         else
           playRoutesObject[key] = {}  unless key of playRoutesObject
           addRoutes(playRoutesObject[key], value)
-      undefined
+      return
     )(playRoutes = {}, @jsRoutes)
     playRoutes
   ]
-  undefined
+  return
 ]

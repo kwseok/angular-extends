@@ -2,14 +2,17 @@
 
 angular.module 'ngExtends.filters.strings', []
 
-.filter 'trustAs', ['$sce', ($sce) -> $sce.trustAs]
+.filter 'trustAs', ['$sce', ($sce) -> (input, type) -> $sce.trustAs(type, input)]
 .filter 'trustAsCss', ['$sce', ($sce) -> $sce.trustAsCss]
 .filter 'trustAsHtml', ['$sce', ($sce) -> $sce.trustAsHtml]
 .filter 'trustAsJs', ['$sce', ($sce) -> $sce.trustAsJs]
 .filter 'trustAsResourceUrl', ['$sce', ($sce) -> $sce.trustAsResourceUrl]
 .filter 'trustAsUrl', ['$sce', ($sce) -> $sce.trustAsUrl]
 
-.filter 'replace', [-> (input, search, replacement) -> (input or '').toString().replace(search, replacement)]
+.filter 'replace', [-> (input, search, replacement, options) ->
+  search = new RegExp(search, options)  unless search instanceof RegExp
+  (input or '').toString().replace(search, replacement)
+]
 
 .filter 'nl2br', [-> (input) -> (input or '').toString().replace(/(\r\n|\n\r|\r|\n)/g, '<br/>')]
 
@@ -22,10 +25,7 @@ angular.module 'ngExtends.filters.strings', []
 .filter 'split', [-> (input, separators, limit) ->
   unless input? then input
   else input.toString().split(new RegExp(
-    if angular.isArray separators
-      (RegExp.escape(s)  for s in separators).join('|')
-    else
-      RegExp.escape(separators)
+    if angular.isArray separators then separators.join('|') else separators
   ), limit)
 ]
 

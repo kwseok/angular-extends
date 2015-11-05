@@ -2,9 +2,9 @@
 
 angular.module 'ngExtends.directives.rotate2d', []
 
-.directive 'extRotate2d', [->
+.directive 'exRotate2d', [->
   scope:
-    value: '=extRotate2d'
+    value: '=exRotate2d'
     limit: '='
     angle: '='
   link: (scope, element) ->
@@ -17,6 +17,6 @@ angular.module 'ngExtends.directives.rotate2d', []
         '-webkit-transform': 'rotate(' + degree + 'deg)'
         '-moz-transform': 'rotate(' + degree + 'deg)'
         'transform': 'rotate(' + degree + 'deg)'
-      undefined
-    undefined
+      return
+    return
 ]
