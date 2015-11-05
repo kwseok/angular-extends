@@ -5,7 +5,7 @@
     "Kiwon Seok"
   ],
   "description": "Angular extension modules",
-  "main": "dist/angular.extends.js",
+  "main": "dist/angular-extends.js",
   "keywords": [
     "angular",
     "angular-extends"

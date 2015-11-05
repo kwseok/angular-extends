@@ -6,8 +6,7 @@ module.exports = {
         filename: 'angular-extends.js',
         minifyFilename: 'angular-extends.min.js',
         sourceMapFilename: 'angular-extends.js.map',
-        libraryTarget: 'umd',
-        library: 'angular'
+        libraryTarget: 'umd'
     },
     module: {
         loaders: [

@@ -6,8 +6,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
-<script src="http://cdn.jsdelivr.net/webjars/org.webjars.bower/angular-extends/0.0.1/dist/angular-extends.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
+<script type="text/javascript" src="./dist/angular-extends.js"></script>
 </head>
 <body>
 </body>
