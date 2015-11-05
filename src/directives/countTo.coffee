@@ -1,6 +1,6 @@
 'use strict'
 
-module.exports = angular.module 'ngExtends.directives.countTo', []
+angular.module 'ngExtends.directives.countTo', []
 
 .directive 'extCountTo', ['$timeout', ($timeout) ->
   replace: false
@@ -18,7 +18,7 @@ module.exports = angular.module 'ngExtends.directives.countTo', []
       refreshInterval = 30
       step = 0
       scope.timoutId = null
-      countTo = parseInt(attrs.countTo) || 0
+      countTo = parseInt(attrs.extCountTo) || 0
       scope.value = parseInt(attrs.value, 10) || 0
       duration = (parseFloat(attrs.duration) * 1000) || 0
 
@@ -44,7 +44,7 @@ module.exports = angular.module 'ngExtends.directives.countTo', []
       calculate()
       tick()
 
-    attrs.$observe 'countTo', (val) -> start()  if val?
+    attrs.$observe 'extCountTo', (val) -> start()  if val?
     attrs.$observe 'value', -> start()
 
     undefined
