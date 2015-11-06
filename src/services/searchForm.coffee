@@ -3,7 +3,7 @@
 
 angular.module 'ngExtends.services.searchForm', []
 
-.factory 'searchForm', [-> (options) ->
+.factory '$searchForm', [-> (options) ->
 
   class SearchForm
     constructor: (@options) ->

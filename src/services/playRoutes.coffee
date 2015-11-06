@@ -2,7 +2,7 @@
 
 angular.module 'ngExtends.services.playRoutes', []
 
-.provider 'playRoutes', [->
+.provider '$playRoutes', [->
   @jsRoutes = window.Routes
   @$get = ['$http', ($http) =>
     wrapHttp = (fn) -> ->
