@@ -10,7 +10,7 @@ angular.module 'ngExtends.filters.strings', []
 .filter 'trustAsUrl', ['$sce', ($sce) -> $sce.trustAsUrl]
 
 .filter 'replace', [-> (input, search, replacement, options) ->
-  search = new RegExp(search, options)  unless search instanceof RegExp
+  search = new RegExp((search or '').toString(), options)  unless search instanceof RegExp
   (input or '').toString().replace(search, replacement)
 ]
 
@@ -25,7 +25,7 @@ angular.module 'ngExtends.filters.strings', []
 .filter 'split', [-> (input, separators, limit) ->
   unless input? then input
   else input.toString().split(new RegExp(
-    if angular.isArray separators then separators.join('|') else separators
+    (if angular.isArray separators then separators.join('|') else separators).toString()
   ), limit)
 ]
 

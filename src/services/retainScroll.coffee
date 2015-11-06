@@ -24,6 +24,7 @@ angular.module 'ngExtends.services.retainScroll', ['ngExtends.services.locationS
 
     for event in ['$routeChangeSuccess', '$stateChangeSuccess']
       $rootScope.$on event, -> retainScroll.inactive = retainScroll.tracking = false
+
     $rootScope.$on '$viewContentLoaded', (e) ->
       if retainScroll.inactive or not $injector.invoke(retainScroll.whetherScrollEvaluator)
         console.log "move to scroll top %o", $target[0]
@@ -31,20 +32,17 @@ angular.module 'ngExtends.services.retainScroll', ['ngExtends.services.locationS
         retainScroll.tracking = true
       else
         isCancel = false
+        cancelScrolling = -> retainScroll.tracking = true; console.log 'Canceled scrolling %o', $target[0]
         offScopeDestroy = e.targetScope.$on '$destroy', -> isCancel = true; offScrollCanceler()
         offScrollCanceler = -> $target.off 'scroll.retainScroll-canceler' + e.targetScope.$id
         onScrollCanceler = -> $target.one 'scroll.retainScroll-canceler' + e.targetScope.$id, -> isCancel = true; offScopeDestroy()
         $timeout(->
-          if isCancel
-            console.log 'Cancel scrolling %o', $target[0]
-            retainScroll.tracking = true
+          if isCancel then cancelScrolling()
           else
             tryCount = retainScroll.maxTryCount
             scrollTop = retainScroll.positions[$location.url()] or 0
             (tryScroll = ->
-              if isCancel
-                console.log 'Cancel scrolling %o', $target[0]
-                retainScroll.tracking = true
+              if isCancel then cancelScrolling()
               else if $injector.invoke(retainScroll.isDelayedEvaluator)
                 $timeout(tryScroll, 200)
               else
