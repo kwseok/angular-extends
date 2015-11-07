@@ -4,30 +4,34 @@ angular.module 'ngExtends.services.playRoutes', []
 
 .provider '$playRoutes', [->
   @jsRoutes = window.Routes
-  @$get = ['$http', ($http) =>
-    wrapHttp = (fn) -> ->
-      routeObject = fn.apply(@, arguments)
-      httpMethod = routeObject.method.toLowerCase()
-      url = routeObject.url
-      res =
-        $route: routeObject
-        method: httpMethod
-        url: url
-        absoluteUrl: routeObject.absoluteURL
-        webSocketUrl: routeObject.webSocketURL
-      res[httpMethod] = (options) -> $http[httpMethod](url, options)
-      res
+  @$get = [
+    '$http', '$location'
+    ($http, $location) =>
+      wrapHttp = (fn) -> ->
+        routeObject = fn.apply(@, arguments)
+        httpMethod = routeObject.method.toLowerCase()
+        absoluteURL = routeObject.absoluteURL()
+        host = absoluteURL.match(/^https?:\/\/([^\/?#]+)(?:[\/?#]|$)/i)?[1]
+        url = if $location.host() is host then routeObject.url else absoluteURL
+        res =
+          $route: routeObject
+          method: httpMethod
+          url: url
+          absoluteUrl: routeObject.absoluteURL
+          webSocketUrl: routeObject.webSocketURL
+        res[httpMethod] = (options) -> $http[httpMethod](url, options)
+        res
 
-    (addRoutes = (playRoutesObject, jsRoutesObject) ->
-      for key, value of jsRoutesObject
-        if angular.isFunction value
-          playRoutesObject[key] = wrapHttp(value)
-        else
-          playRoutesObject[key] = {}  unless key of playRoutesObject
-          addRoutes(playRoutesObject[key], value)
-      return
-    )(playRoutes = {}, @jsRoutes)
-    playRoutes
+      (addRoutes = (playRoutesObject, jsRoutesObject) ->
+        for key, value of jsRoutesObject
+          if angular.isFunction value
+            playRoutesObject[key] = wrapHttp(value)
+          else
+            playRoutesObject[key] = {}  unless key of playRoutesObject
+            addRoutes(playRoutesObject[key], value)
+        return
+      )(playRoutes = {}, @jsRoutes)
+      playRoutes
   ]
   return
 ]
