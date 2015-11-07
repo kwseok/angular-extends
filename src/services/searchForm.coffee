@@ -7,8 +7,8 @@ angular.module 'ngExtends.services.searchForm', []
 
   class SearchForm
     constructor: (@options) ->
-      @options =
-        action: @options  if angular.isFunction @options
+      if angular.isFunction @options
+        @options = action: @options
       @options = angular.extend(
         defaults: {}
         preSubmit: (form, filters, unfilters) ->

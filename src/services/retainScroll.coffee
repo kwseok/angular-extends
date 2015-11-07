@@ -47,7 +47,7 @@ angular.module 'ngExtends.services.retainScroll', ['ngExtends.services.locationS
               else
                 offScrollCanceler()
                 $target.scrollTop(scrollTop)
-                console.log "#{1 + $retainScroll.maxTryCount - tryCount} try move to scroll #{$target.scrollTop()} / #{scrollTop} %o", $target[0]
+                console.log "#{1 + $retainScroll.maxTryCount - tryCount} try move to scrolling #{$target.scrollTop()} / #{scrollTop} %o", $target[0]
                 if $target.scrollTop() is scrollTop or --tryCount <= 0
                   $retainScroll.tracking = true
                   offScopeDestroy()
