@@ -57,7 +57,7 @@ angular.module 'ngExtends.services.retainScroll', ['ngExtends.services.locationS
               return
             )()
           return
-        , 100)
+        , 0)
       return
     return
 ]
