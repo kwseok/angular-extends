@@ -30,9 +30,7 @@ angular.module('ngExtends.filters', [
 ]);
 
 angular.module('ngExtends.services', [
-    'ngExtends.services.locationState',
     'ngExtends.services.playRoutes',
-    'ngExtends.services.retainScroll',
     'ngExtends.services.searchForm'
 ]);
 

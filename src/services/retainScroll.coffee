@@ -6,7 +6,7 @@ angular.module 'ngExtends.services.retainScroll', ['ngExtends.services.locationS
 
 .provider '$retainScroll', [->
   @target = null
-  @inactive = false
+  @inactiveOnce = false
   @tracking = false
   @positions = {}
   @maxTryCount = 10
@@ -22,11 +22,9 @@ angular.module 'ngExtends.services.retainScroll', ['ngExtends.services.locationS
     $target = $($retainScroll.target or window)
     $target.on 'scroll', -> $retainScroll.positions[$location.url()] = $target.scrollTop()  if $retainScroll.tracking
 
-    for event in ['$routeChangeSuccess', '$stateChangeSuccess']
-      $rootScope.$on event, -> $retainScroll.inactive = $retainScroll.tracking = false
-
+    $rootScope.$on '$locationChangeSuccess', -> $retainScroll.inactiveOnce = $retainScroll.tracking = false
     $rootScope.$on '$viewContentLoaded', (e) ->
-      if $retainScroll.inactive or not $injector.invoke($retainScroll.whetherScrollEvaluator)
+      if $retainScroll.inactiveOnce or not $injector.invoke($retainScroll.whetherScrollEvaluator)
         console.log "move to scroll top %o", $target[0]
         $target.scrollTop(0)
         $retainScroll.tracking = true
