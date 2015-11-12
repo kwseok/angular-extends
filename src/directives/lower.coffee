@@ -13,7 +13,7 @@ angular.module 'ngExtends.directives.lower', []
         end = elem.selectionEnd
         modelCtrl.$setViewValue lowered
         modelCtrl.$render()
-        elem.setSelectionRange(start, end)
+        elem.setSelectionRange?(start, end)
       lowered
 
     modelCtrl.$parsers.push toLower

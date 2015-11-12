@@ -13,7 +13,7 @@ angular.module 'ngExtends.directives.upper', []
         end = elem.selectionEnd
         modelCtrl.$setViewValue uppered
         modelCtrl.$render()
-        elem.setSelectionRange(start, end)
+        elem.setSelectionRange?(start, end)
       uppered
 
     modelCtrl.$parsers.push toUpper
