@@ -19,16 +19,4 @@ angular.module 'ngExtends.directives.lower', []
     modelCtrl.$parsers.push toLower
     toLower scope[attrs.ngModel]
     return
-
-    ###
-     // store current positions in variables
-    var start = this.selectionStart,
-        end = this.selectionEnd;
-
-    // do your stuff
-    $(this).val( $(this).val().toLowerCase() );
-
-    // restore from variables...
-    this.setSelectionRange(start, end);
-    ###
 ]
