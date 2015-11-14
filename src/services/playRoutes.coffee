@@ -21,7 +21,7 @@ angular.module 'ngExtends.services.playRoutes', []
           webSocketURL: routeObject.webSocketURL
         res[httpMethod] = (args...) ->
           ajax = $http[httpMethod]
-          ajax.call(ajax, [].concat.call([url], args))
+          ajax.apply(ajax, [].concat.call([url], args))
         res
 
       (addRoutes = (playRoutesObject, jsRoutesObject) ->
