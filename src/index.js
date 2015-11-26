@@ -9,9 +9,7 @@ import './directives/rotate2d.coffee'
 import './directives/upper.coffee'
 import './filters/arrays.coffee'
 import './filters/strings.coffee'
-import './services/locationState.coffee'
 import './services/playRoutes.coffee'
-import './services/retainScroll.coffee'
 import './services/searchForm.coffee'
 
 angular.module('ngExtends.directives', [

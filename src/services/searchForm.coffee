@@ -1,6 +1,5 @@
 'use strict'
 
-
 angular.module 'ngExtends.services.searchForm', []
 
 .factory '$searchForm', [-> (options) ->
