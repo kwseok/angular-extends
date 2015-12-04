@@ -1,6 +1,6 @@
 {
   "name": "angular-extends",
-  "version": "0.2.11",
+  "version": "0.2.12-SNAPSHOT",
   "description": "Angular extension modules",
   "main": "dist/angular-extends.js",
   "scripts": {
