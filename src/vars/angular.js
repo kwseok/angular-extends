@@ -2,7 +2,7 @@
 
 import angular from 'angular'
 
-if (!$) {
+if (!angular) {
     throw new Error("Angular.extends requires a AngularJS");
 }
 

@@ -99,7 +99,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	if (!$) {
+	if (!_angular2.default) {
 	    throw new Error("Angular.extends requires a AngularJS");
 	}
 	
