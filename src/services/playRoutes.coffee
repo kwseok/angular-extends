@@ -19,7 +19,7 @@ angular.module 'ngExtends.services.playRoutes', []
           url: url
           absoluteURL: routeObject.absoluteURL
           webSocketURL: routeObject.webSocketURL
-        res.ajax = (options) ->
+        res.send = res.ajax = (options) ->
           options = options or {}
           options.method = httpMethod
           options.url = url

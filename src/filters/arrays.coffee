@@ -2,7 +2,11 @@
 
 angular.module 'ngExtends.filters.arrays', []
 
-.filter 'makeArray', [-> (input) -> if angular.isArray input then input else $.makeArray(input)]
+.filter 'makeArray', [-> (input) ->
+  if angular.isArray(input) then input
+  else unless input? then []
+  else [input]
+]
 
 .filter 'range', [-> (from, to, step = 1) ->
   isNumber = typeof from is 'number' and typeof to is 'number'
@@ -12,7 +16,7 @@ angular.module 'ngExtends.filters.arrays', []
     if isNumber then i else String.fromCharCode(i)
 ]
 
-.filter 'join', [-> (input, sep) -> $.makeArray(input).join(sep)]
+.filter 'join', ['makeArrayFilter', (makeArrayFilter) -> (input, sep) -> makeArrayFilter(input).join(sep)]
 
 .filter 'combine', ['$parse', ($parse) -> (input, transformers...) ->
   input = [input]  unless angular.isArray input
@@ -29,10 +33,10 @@ angular.module 'ngExtends.filters.arrays', []
   ).reduce (t, v) -> t + v
 ]
 
-.filter 'limit', [-> (input, page, itemsPerPage) ->
+.filter 'limit', ['makeArrayFilter', (makeArrayFilter) -> (input, page, itemsPerPage) ->
   from = (page - 1) * itemsPerPage
   to = from + itemsPerPage
-  $.makeArray(input)[from...to]
+  makeArrayFilter(input)[from...to]
 ]
 
 .filter 'trim', [-> (input) ->

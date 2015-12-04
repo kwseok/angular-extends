@@ -365,8 +365,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return function(input) {
 	      if (angular.isArray(input)) {
 	        return input;
+	      } else if (input == null) {
+	        return [];
 	      } else {
-	        return $.makeArray(input);
+	        return [input];
 	      }
 	    };
 	  }
@@ -392,9 +394,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	  }
 	]).filter('join', [
-	  function() {
+	  'makeArrayFilter', function(makeArrayFilter) {
 	    return function(input, sep) {
-	      return $.makeArray(input).join(sep);
+	      return makeArrayFilter(input).join(sep);
 	    };
 	  }
 	]).filter('combine', [
@@ -436,12 +438,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	  }
 	]).filter('limit', [
-	  function() {
+	  'makeArrayFilter', function(makeArrayFilter) {
 	    return function(input, page, itemsPerPage) {
 	      var from, to;
 	      from = (page - 1) * itemsPerPage;
 	      to = from + itemsPerPage;
-	      return $.makeArray(input).slice(from, to);
+	      return makeArrayFilter(input).slice(from, to);
 	    };
 	  }
 	]).filter('trim', [
@@ -640,7 +642,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                absoluteURL: routeObject.absoluteURL,
 	                webSocketURL: routeObject.webSocketURL
 	              };
-	              res.ajax = function(options) {
+	              res.send = res.ajax = function(options) {
 	                options = options || {};
 	                options.method = httpMethod;
 	                options.url = url;
