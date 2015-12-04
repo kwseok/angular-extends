@@ -13,7 +13,11 @@ module.exports = {
             {
                 test: /.js$/,
                 exclude: /(node_modules|bower_components)/,
-                loader: 'babel-loader?optional=runtime'
+                loader: 'babel',
+                query: {
+                    presets: ['es2015'],
+                    plugins: ['transform-runtime']
+                } 
             },
             {
                 test: /\.coffee$/,
@@ -23,12 +27,6 @@ module.exports = {
         ]
     },
     externals: {
-        jquery: {
-            root: "jQuery",
-            commonjs: "jquery",
-            commonjs2: "jquery",
-            amd: "jquery"
-        },
         angular: 'angular'
     },
     devtool: '#inline-source-map',
@@ -36,8 +34,6 @@ module.exports = {
         new webpack.ProvidePlugin({
             window: __dirname + '/src/vars/window',
             document: __dirname + '/src/vars/document',
-            $: __dirname + '/src/vars/jquery',
-            jQuery: __dirname + '/src/vars/jquery',
             angular: __dirname + '/src/vars/angular'
         })
     ]
