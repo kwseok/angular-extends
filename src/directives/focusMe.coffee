@@ -8,7 +8,7 @@ angular.module 'ngExtends.directives.focusMe', []
   link: (scope, element) ->
     scope.$watch 'trigger', (value) ->
       if typeof value is 'boolean'
-        element[if value then 'focus' else 'blur']?()
+        element[0][if value then 'focus' else 'blur']?()
         scope.trigger = null
       return
     return

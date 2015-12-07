@@ -212,10 +212,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      },
 	      link: function(scope, element) {
 	        scope.$watch('trigger', function(value) {
-	          var name;
+	          var base, name;
 	          if (typeof value === 'boolean') {
-	            if (typeof element[name = value ? 'focus' : 'blur'] === "function") {
-	              element[name]();
+	            if (typeof (base = element[0])[name = value ? 'focus' : 'blur'] === "function") {
+	              base[name]();
 	            }
 	            scope.trigger = null;
 	          }

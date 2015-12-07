@@ -1,6 +1,6 @@
 {
   "name": "angular-extends",
-  "version": "0.2.12-SNAPSHOT",
+  "version": "0.2.12",
   "description": "Angular extension modules",
   "main": "dist/angular-extends.js",
   "scripts": {
@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/stonexx/angular-extends#readme",
   "dependencies": {
-    "angular": "^1.4.7"
+    "angular": "^1.4.8"
   },
   "devDependencies": {
     "babel-core": "^6.3.2",
