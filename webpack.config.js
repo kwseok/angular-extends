@@ -48,9 +48,9 @@ module.exports = {
     devtool: '#inline-source-map',
     plugins: [
         new webpack.ProvidePlugin({
-            window: path.resolve(srcDir, 'vars/window'),
-            document: path.resolve(srcDir, 'vars/document'),
-            angular: path.resolve(srcDir, 'vars/angular'),
+            window: [path.resolve(srcDir, 'vars/window'), 'default'],
+            document: [path.resolve(srcDir, 'vars/document'), 'default'],
+            angular: [path.resolve(srcDir, 'vars/angular'), 'default'],
         }),
         new UglifyJsPlugin({
             sourceMap: true,

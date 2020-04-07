@@ -6,4 +6,4 @@ if (!angular) {
     throw new Error("Angular.extends requires a AngularJS");
 }
 
-module.exports = angular;
+export default angular;
